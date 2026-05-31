@@ -1,0 +1,22 @@
+# Local runtime/cache
+.dotnet-home/
+dist/
+
+# Generated release bundles and binaries
+HoudiniNodeAtlas_*/
+Collins_*/
+*.exe
+*.zip
+*.pdb
+*.dll
+
+# User/local workspace data
+*.user
+*.suo
+*.log
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

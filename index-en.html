@@ -1,0 +1,329 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collins</title>
+    <link rel="icon" href="assets/octopus.ico" sizes="any" />
+    <link rel="icon" href="assets/octopus-favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <svg class="icon-sprite" aria-hidden="true">
+      <symbol id="icon-plus" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12h14" />
+      </symbol>
+      <symbol id="icon-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="6" />
+        <path d="m16 16 4 4" />
+      </symbol>
+      <symbol id="icon-camera" viewBox="0 0 24 24">
+        <path d="M7 7h2l1.4-2h3.2L15 7h2a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3v-6a3 3 0 0 1 3-3Z" />
+        <circle cx="12" cy="13" r="3" />
+      </symbol>
+      <symbol id="icon-download" viewBox="0 0 24 24">
+        <path d="M12 4v10" />
+        <path d="m8 10 4 4 4-4" />
+        <path d="M5 20h14" />
+      </symbol>
+      <symbol id="icon-upload" viewBox="0 0 24 24">
+        <path d="M12 20V10" />
+        <path d="m8 14 4-4 4 4" />
+        <path d="M5 4h14" />
+      </symbol>
+      <symbol id="icon-trash" viewBox="0 0 24 24">
+        <path d="M5 7h14" />
+        <path d="M9 7V5h6v2" />
+        <path d="M8 10v9M16 10v9M6 7l1 14h10l1-14" />
+      </symbol>
+      <symbol id="icon-reset" viewBox="0 0 24 24">
+        <path d="M6 9a7 7 0 1 1 1 8" />
+        <path d="M6 4v5h5" />
+      </symbol>
+      <symbol id="icon-fit" viewBox="0 0 24 24">
+        <path d="M8 4H4v4M16 4h4v4M8 20H4v-4M16 20h4v-4" />
+        <path d="M4 4l6 6M20 4l-6 6M4 20l6-6M20 20l-6-6" />
+      </symbol>
+      <symbol id="icon-save" viewBox="0 0 24 24">
+        <path d="M5 5h12l2 2v12H5Z" />
+        <path d="M8 5v6h8V5" />
+        <path d="M8 19v-5h8v5" />
+      </symbol>
+      <symbol id="icon-note" viewBox="0 0 24 24">
+        <path d="M5 4h14v12l-4 4H5Z" />
+        <path d="M15 16v4" />
+        <path d="M15 16h4" />
+        <path d="M8 8h8M8 12h5" />
+      </symbol>
+      <symbol id="icon-folder" viewBox="0 0 24 24">
+        <path d="M4 7h6l2 2h8v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z" />
+        <path d="M4 7v11" />
+      </symbol>
+      <symbol id="icon-pin" viewBox="0 0 24 24">
+        <path d="M14 4 20 10" />
+        <path d="M15 5 9 11l-3 1 6 6 1-3 6-6" />
+        <path d="M9 15 4 20" />
+      </symbol>
+    </svg>
+
+    <div class="app">
+      <main class="workspace">
+        <aside class="sidebar" aria-label="Board list">
+          <section class="panel">
+            <div class="panel-title">
+              <h2>Boards</h2>
+              <div class="panel-actions">
+                <button class="small-icon" id="addFolderBtn" title="Add folder" aria-label="Add folder">
+                  <svg><use href="#icon-folder"></use></svg>
+                </button>
+                <button class="small-icon" id="addBoardBtn" title="Add board" aria-label="Add board">
+                  <svg><use href="#icon-plus"></use></svg>
+                </button>
+              </div>
+            </div>
+            <div class="board-list" id="boardList"></div>
+          </section>
+        </aside>
+
+        <section class="graph-panel" aria-label="Node graph canvas">
+          <div class="graph-head">
+            <div class="graph-title-row">
+              <button class="pixel-octo" id="octoLogo" type="button" title="Version information" aria-label="Version information">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+              </button>
+              <div>
+                <p class="eyebrow" id="activeCrumb">BOARD</p>
+                <h2 id="graphTitle">Node Graph</h2>
+                <p class="node-index-meta" id="nodeIndexMeta">Node index initializing</p>
+                <p class="workspace-meta" id="workspaceMeta">Local autosave</p>
+              </div>
+            </div>
+            <div class="graph-tools">
+              <button class="icon-button" id="searchToggleBtn" title="Search current board" aria-label="Search current board">
+                <svg><use href="#icon-search"></use></svg>
+              </button>
+              <button class="icon-button" id="pinWindowBtn" title="Pin window on top" aria-label="Pin window on top" aria-pressed="false">
+                <svg><use href="#icon-pin"></use></svg>
+              </button>
+              <label class="searchbox graph-search hidden" id="graphSearch" for="globalSearch">
+                <svg><use href="#icon-search"></use></svg>
+                <input id="globalSearch" type="search" placeholder="Search nodes, parameters, and notes on this board" autocomplete="off" />
+              </label>
+              <button class="icon-button" id="addNodeBtn" title="Open node menu" aria-label="Open node menu">
+                <svg><use href="#icon-plus"></use></svg>
+              </button>
+              <button class="icon-button" id="screenshotBtn" title="Screenshot import" aria-label="Screenshot import">
+                <svg><use href="#icon-camera"></use></svg>
+              </button>
+              <button class="icon-button" id="addBoardNoteBtn" title="Add board note" aria-label="Add board note">
+                <svg><use href="#icon-note"></use></svg>
+              </button>
+              <button class="icon-button" id="saveBtn" title="Save workspace file" aria-label="Save workspace file">
+                <svg><use href="#icon-save"></use></svg>
+              </button>
+              <button class="icon-button" id="exportBoardBtn" title="Save board" aria-label="Save board">
+                <svg><use href="#icon-download"></use></svg>
+              </button>
+              <button class="icon-button" id="importBoardBtn" title="Open" aria-label="Open">
+                <svg><use href="#icon-upload"></use></svg>
+              </button>
+              <button class="icon-button" id="fitBtn" title="Fit" aria-label="Fit">
+                <svg><use href="#icon-fit"></use></svg>
+              </button>
+              <button class="icon-button" id="refreshIndexBtn" title="Check node index" aria-label="Check node index">
+                <svg><use href="#icon-reset"></use></svg>
+              </button>
+              <label class="zoom-readout" for="zoomRange">
+                <span id="zoomValue">100%</span>
+                <input id="zoomRange" type="range" min="25" max="200" value="100" step="5" />
+              </label>
+            </div>
+          </div>
+
+          <div class="graph-viewport" id="graphViewport">
+            <div class="graph-world" id="graphWorld">
+              <svg class="wire-layer" id="wireLayer"></svg>
+              <div class="node-layer" id="nodeLayer"></div>
+              <div class="board-note-layer" id="boardNoteLayer"></div>
+            </div>
+            <svg class="cut-layer hidden" id="cutLayer"></svg>
+            <div class="selection-box hidden" id="selectionBox"></div>
+            <div class="mode-hint hidden" id="modeHint"></div>
+            <div class="connection-hint" id="connectionHint">Choose an input port to complete the wire</div>
+            <section class="node-menu hidden" id="nodeMenu" aria-label="Node search menu">
+              <div class="node-menu-head">
+                <svg><use href="#icon-search"></use></svg>
+                <input id="nodeSearchInput" type="search" placeholder="Tab search Houdini nodes" autocomplete="off" />
+                <span id="nodeMenuCount">0</span>
+              </div>
+              <div class="node-menu-title" id="nodeMenuTitle">All Contexts</div>
+              <div class="node-menu-list" id="nodeMenuList"></div>
+            </section>
+          </div>
+        </section>
+
+        <aside class="inspector" aria-label="Node properties">
+          <section class="panel inspector-card">
+            <div class="panel-title">
+              <h2>Inspector</h2>
+              <button class="small-icon danger" id="deleteBtn" title="Delete selection" aria-label="Delete selection">
+                <svg><use href="#icon-trash"></use></svg>
+              </button>
+            </div>
+
+            <div class="empty-state" id="emptyInspector">
+              <strong>Select a node</strong>
+              <span>Edit context, parameters, and notes.</span>
+            </div>
+
+            <form id="inspectorForm" class="inspector-form hidden">
+              <label>
+                Node name
+                <input id="nodeNameInput" type="text" />
+              </label>
+              <label>
+                Type
+                <input id="nodeTypeInput" type="text" />
+              </label>
+              <label>
+                Network type
+                <select id="nodeCategoryInput"></select>
+              </label>
+              <div class="port-settings">
+                <label>
+                  Inputs
+                  <select id="nodeInputCountInput">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+                </label>
+                <label>
+                  Outputs
+                  <select id="nodeOutputCountInput">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+                </label>
+                <label class="toggle-row">
+                  <input id="nodeMultiInputInput" type="checkbox" />
+                  Multiple inputs
+                </label>
+              </div>
+              <label>
+                Note
+                <textarea id="nodeNoteInput" rows="5"></textarea>
+              </label>
+              <label>
+                VEXpression
+                <textarea id="nodeVexInput" class="code-textarea" rows="6" spellcheck="false" placeholder='@Cd = set(1, 0.35, 0);'></textarea>
+              </label>
+              <div class="note-media">
+                <div class="params-head">
+                  <span>Screenshots</span>
+                  <button type="button" class="text-button" id="addNoteImageBtn">Add screenshot</button>
+                </div>
+                <input class="hidden" id="noteImageInput" type="file" accept="image/*" multiple />
+                <div class="note-image-list" id="noteImageList"></div>
+              </div>
+              <div class="params-head">
+                <span>Parameters</span>
+                <button type="button" class="text-button" id="addParamBtn">Add parameter</button>
+              </div>
+              <div class="param-list" id="paramList"></div>
+            </form>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <div class="modal hidden" id="versionModal" role="dialog" aria-modal="true" aria-labelledby="versionTitle">
+      <div class="modal-backdrop" data-close-version></div>
+      <section class="modal-card version-card">
+        <div class="modal-head">
+          <div>
+            <p class="eyebrow">Collins</p>
+            <h2 id="versionTitle">Version information</h2>
+          </div>
+          <button class="small-icon" data-close-version title="Close" aria-label="Close">×</button>
+        </div>
+        <div class="version-info" id="versionInfo"></div>
+      </section>
+    </div>
+
+    <div class="modal hidden" id="screenshotModal" role="dialog" aria-modal="true" aria-labelledby="screenshotTitle">
+      <div class="modal-backdrop" data-close-modal></div>
+      <section class="modal-card">
+        <div class="modal-head">
+          <div>
+            <p class="eyebrow">Screenshot Import</p>
+            <h2 id="screenshotTitle">Screenshot import</h2>
+          </div>
+          <button class="small-icon" data-close-modal title="Close" aria-label="Close">×</button>
+        </div>
+
+        <div class="import-grid">
+          <label class="dropzone" id="dropzone">
+            <input id="screenshotInput" type="file" accept="image/*" />
+            <svg><use href="#icon-camera"></use></svg>
+            <strong>Drop a Houdini network screenshot</strong>
+            <span>PNG、JPG、WEBP</span>
+          </label>
+
+          <canvas id="screenshotCanvas" width="720" height="420"></canvas>
+
+          <label class="ocr-text">
+            Recognition text
+            <textarea id="ocrText" rows="8" placeholder="You can also paste OCR text or node names"></textarea>
+          </label>
+
+          <div class="import-results">
+            <div class="panel-title">
+              <h3>Candidate nodes</h3>
+              <span id="importStatus">Waiting for screenshot</span>
+            </div>
+            <div id="candidateList" class="candidate-list"></div>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button class="compact-button" id="runOcrBtn">
+            <svg><use href="#icon-search"></use></svg>
+            Recognize
+          </button>
+          <button class="primary-button" id="applyImportBtn">Import to current board</button>
+        </div>
+      </section>
+    </div>
+
+    <div class="modal hidden" id="imagePreviewModal" role="dialog" aria-modal="true" aria-labelledby="imagePreviewTitle">
+      <div class="modal-backdrop" data-close-image-preview></div>
+      <section class="modal-card image-preview-card">
+        <div class="modal-head">
+          <div>
+            <p class="eyebrow">Screenshot</p>
+            <h2 id="imagePreviewTitle">Screenshot preview</h2>
+          </div>
+          <button class="small-icon" data-close-image-preview title="Close" aria-label="Close">×</button>
+        </div>
+        <figure class="image-preview-body">
+          <img id="imagePreviewImg" alt="Screenshot preview" />
+          <figcaption id="imagePreviewCaption"></figcaption>
+        </figure>
+      </section>
+    </div>
+
+    <input class="hidden" id="boardImportInput" type="file" accept="application/json,.json" />
+  </body>
+</html>
+
