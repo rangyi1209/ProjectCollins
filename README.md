@@ -22,7 +22,7 @@ The name comes from Jim Collins, Harry Houdini's trusted chief assistant and mec
 
 ## Run
 
-Open `index.html` in a modern browser for the Chinese UI, or `index-en.html` for the English UI.
+On the `codex/english-version` branch, open `index.html` in a modern browser for the English UI. The bilingual `main` branch keeps `index.html` as Chinese and `index-en.html` as English.
 
 For the standalone Windows launcher, compile `launcher/ProgramNetFx.cs` with the embedded web resources. The local launcher serves the app in an app window and stores autosave files under the user's local application data.
 
