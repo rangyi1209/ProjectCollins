@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -69,15 +69,15 @@
 
     <div class="app">
       <main class="workspace">
-        <aside class="sidebar" aria-label="画板列表">
+        <aside class="sidebar" aria-label="Board list">
           <section class="panel">
             <div class="panel-title">
-              <h2>画板</h2>
+              <h2>Boards</h2>
               <div class="panel-actions">
-                <button class="small-icon" id="addFolderBtn" title="添加文件夹" aria-label="添加文件夹">
+                <button class="small-icon" id="addFolderBtn" title="Add folder" aria-label="Add folder">
                   <svg><use href="#icon-folder"></use></svg>
                 </button>
-                <button class="small-icon" id="addBoardBtn" title="添加画板" aria-label="添加画板">
+                <button class="small-icon" id="addBoardBtn" title="Add board" aria-label="Add board">
                   <svg><use href="#icon-plus"></use></svg>
                 </button>
               </div>
@@ -86,10 +86,10 @@
           </section>
         </aside>
 
-        <section class="graph-panel" aria-label="节点连线画布">
+        <section class="graph-panel" aria-label="Node graph canvas">
           <div class="graph-head">
             <div class="graph-title-row">
-              <button class="pixel-octo" id="octoLogo" type="button" title="版本信息" aria-label="版本信息">
+              <button class="pixel-octo" id="octoLogo" type="button" title="Version information" aria-label="Version information">
                 <span></span><span></span><span></span><span></span><span></span>
                 <span></span><span></span><span></span><span></span><span></span>
                 <span></span><span></span><span></span><span></span><span></span>
@@ -97,45 +97,45 @@
                 <span></span><span></span><span></span><span></span><span></span>
               </button>
               <div>
-                <p class="eyebrow" id="activeCrumb">全部网络</p>
-                <h2 id="graphTitle">节点连接图</h2>
-                <p class="node-index-meta" id="nodeIndexMeta">节点库初始化中</p>
-                <p class="workspace-meta" id="workspaceMeta">本地自动保存</p>
+                <p class="eyebrow" id="activeCrumb">BOARD</p>
+                <h2 id="graphTitle">Node Graph</h2>
+                <p class="node-index-meta" id="nodeIndexMeta">Node index initializing</p>
+                <p class="workspace-meta" id="workspaceMeta">Local autosave</p>
               </div>
             </div>
             <div class="graph-tools">
-              <button class="icon-button" id="searchToggleBtn" title="搜索当前画板" aria-label="搜索当前画板">
+              <button class="icon-button" id="searchToggleBtn" title="Search current board" aria-label="Search current board">
                 <svg><use href="#icon-search"></use></svg>
               </button>
-              <button class="icon-button" id="pinWindowBtn" title="窗口置顶" aria-label="窗口置顶" aria-pressed="false">
+              <button class="icon-button" id="pinWindowBtn" title="Pin window on top" aria-label="Pin window on top" aria-pressed="false">
                 <svg><use href="#icon-pin"></use></svg>
               </button>
               <label class="searchbox graph-search hidden" id="graphSearch" for="globalSearch">
                 <svg><use href="#icon-search"></use></svg>
-                <input id="globalSearch" type="search" placeholder="搜索当前画板里的节点、参数、note" autocomplete="off" />
+                <input id="globalSearch" type="search" placeholder="Search nodes, parameters, and notes on this board" autocomplete="off" />
               </label>
-              <button class="icon-button" id="addNodeBtn" title="打开节点菜单" aria-label="打开节点菜单">
+              <button class="icon-button" id="addNodeBtn" title="Open node menu" aria-label="Open node menu">
                 <svg><use href="#icon-plus"></use></svg>
               </button>
-              <button class="icon-button" id="screenshotBtn" title="截图识别导入" aria-label="截图识别导入">
+              <button class="icon-button" id="screenshotBtn" title="Screenshot import" aria-label="Screenshot import">
                 <svg><use href="#icon-camera"></use></svg>
               </button>
-              <button class="icon-button" id="addBoardNoteBtn" title="添加画板便签" aria-label="添加画板便签">
+              <button class="icon-button" id="addBoardNoteBtn" title="Add board note" aria-label="Add board note">
                 <svg><use href="#icon-note"></use></svg>
               </button>
-              <button class="icon-button" id="saveBtn" title="保存工作区文件" aria-label="保存工作区文件">
+              <button class="icon-button" id="saveBtn" title="Save workspace file" aria-label="Save workspace file">
                 <svg><use href="#icon-save"></use></svg>
               </button>
-              <button class="icon-button" id="exportBoardBtn" title="存画板" aria-label="存画板">
+              <button class="icon-button" id="exportBoardBtn" title="Save board" aria-label="Save board">
                 <svg><use href="#icon-download"></use></svg>
               </button>
-              <button class="icon-button" id="importBoardBtn" title="打开" aria-label="打开">
+              <button class="icon-button" id="importBoardBtn" title="Open" aria-label="Open">
                 <svg><use href="#icon-upload"></use></svg>
               </button>
-              <button class="icon-button" id="fitBtn" title="适配" aria-label="适配">
+              <button class="icon-button" id="fitBtn" title="Fit" aria-label="Fit">
                 <svg><use href="#icon-fit"></use></svg>
               </button>
-              <button class="icon-button" id="refreshIndexBtn" title="检查节点库" aria-label="检查节点库">
+              <button class="icon-button" id="refreshIndexBtn" title="Check node index" aria-label="Check node index">
                 <svg><use href="#icon-reset"></use></svg>
               </button>
               <label class="zoom-readout" for="zoomRange">
@@ -154,11 +154,11 @@
             <svg class="cut-layer hidden" id="cutLayer"></svg>
             <div class="selection-box hidden" id="selectionBox"></div>
             <div class="mode-hint hidden" id="modeHint"></div>
-            <div class="connection-hint" id="connectionHint">选择输入端口完成连线</div>
-            <section class="node-menu hidden" id="nodeMenu" aria-label="节点搜索菜单">
+            <div class="connection-hint" id="connectionHint">Choose an input port to complete the wire</div>
+            <section class="node-menu hidden" id="nodeMenu" aria-label="Node search menu">
               <div class="node-menu-head">
                 <svg><use href="#icon-search"></use></svg>
-                <input id="nodeSearchInput" type="search" placeholder="Tab 搜索 Houdini 节点" autocomplete="off" />
+                <input id="nodeSearchInput" type="search" placeholder="Tab search Houdini nodes" autocomplete="off" />
                 <span id="nodeMenuCount">0</span>
               </div>
               <div class="node-menu-title" id="nodeMenuTitle">All Contexts</div>
@@ -167,36 +167,36 @@
           </div>
         </section>
 
-        <aside class="inspector" aria-label="节点属性">
+        <aside class="inspector" aria-label="Node properties">
           <section class="panel inspector-card">
             <div class="panel-title">
-              <h2>检查器</h2>
-              <button class="small-icon danger" id="deleteBtn" title="删除选择" aria-label="删除选择">
+              <h2>Inspector</h2>
+              <button class="small-icon danger" id="deleteBtn" title="Delete selection" aria-label="Delete selection">
                 <svg><use href="#icon-trash"></use></svg>
               </button>
             </div>
 
             <div class="empty-state" id="emptyInspector">
-              <strong>选择一个节点</strong>
-              <span>编辑网络类型、参数和旁注。</span>
+              <strong>Select a node</strong>
+              <span>Edit context, parameters, and notes.</span>
             </div>
 
             <form id="inspectorForm" class="inspector-form hidden">
               <label>
-                节点名
+                Node name
                 <input id="nodeNameInput" type="text" />
               </label>
               <label>
-                类型
+                Type
                 <input id="nodeTypeInput" type="text" />
               </label>
               <label>
-                网络类型
+                Network type
                 <select id="nodeCategoryInput"></select>
               </label>
               <div class="port-settings">
                 <label>
-                  输入
+                  Inputs
                   <select id="nodeInputCountInput">
                     <option value="0">0</option>
                     <option value="1">1</option>
@@ -206,7 +206,7 @@
                   </select>
                 </label>
                 <label>
-                  输出
+                  Outputs
                   <select id="nodeOutputCountInput">
                     <option value="0">0</option>
                     <option value="1">1</option>
@@ -217,7 +217,7 @@
                 </label>
                 <label class="toggle-row">
                   <input id="nodeMultiInputInput" type="checkbox" />
-                  多输入
+                  Multiple inputs
                 </label>
               </div>
               <label>
@@ -230,15 +230,15 @@
               </label>
               <div class="note-media">
                 <div class="params-head">
-                  <span>截图</span>
-                  <button type="button" class="text-button" id="addNoteImageBtn">添加截图</button>
+                  <span>Screenshots</span>
+                  <button type="button" class="text-button" id="addNoteImageBtn">Add screenshot</button>
                 </div>
                 <input class="hidden" id="noteImageInput" type="file" accept="image/*" multiple />
                 <div class="note-image-list" id="noteImageList"></div>
               </div>
               <div class="params-head">
-                <span>参数</span>
-                <button type="button" class="text-button" id="addParamBtn">添加参数</button>
+                <span>Parameters</span>
+                <button type="button" class="text-button" id="addParamBtn">Add parameter</button>
               </div>
               <div class="param-list" id="paramList"></div>
             </form>
@@ -253,9 +253,9 @@
         <div class="modal-head">
           <div>
             <p class="eyebrow">Collins</p>
-            <h2 id="versionTitle">版本信息</h2>
+            <h2 id="versionTitle">Version information</h2>
           </div>
-          <button class="small-icon" data-close-version title="关闭" aria-label="关闭">×</button>
+          <button class="small-icon" data-close-version title="Close" aria-label="Close">×</button>
         </div>
         <div class="version-info" id="versionInfo"></div>
       </section>
@@ -267,30 +267,30 @@
         <div class="modal-head">
           <div>
             <p class="eyebrow">Screenshot Import</p>
-            <h2 id="screenshotTitle">截图识别导入</h2>
+            <h2 id="screenshotTitle">Screenshot import</h2>
           </div>
-          <button class="small-icon" data-close-modal title="关闭" aria-label="关闭">×</button>
+          <button class="small-icon" data-close-modal title="Close" aria-label="Close">×</button>
         </div>
 
         <div class="import-grid">
           <label class="dropzone" id="dropzone">
             <input id="screenshotInput" type="file" accept="image/*" />
             <svg><use href="#icon-camera"></use></svg>
-            <strong>拖入 Houdini 网络截图</strong>
+            <strong>Drop a Houdini network screenshot</strong>
             <span>PNG、JPG、WEBP</span>
           </label>
 
           <canvas id="screenshotCanvas" width="720" height="420"></canvas>
 
           <label class="ocr-text">
-            识别文本
-            <textarea id="ocrText" rows="8" placeholder="也可以粘贴 OCR 文本或节点名"></textarea>
+            Recognition text
+            <textarea id="ocrText" rows="8" placeholder="You can also paste OCR text or node names"></textarea>
           </label>
 
           <div class="import-results">
             <div class="panel-title">
-              <h3>候选节点</h3>
-              <span id="importStatus">等待截图</span>
+              <h3>Candidate nodes</h3>
+              <span id="importStatus">Waiting for screenshot</span>
             </div>
             <div id="candidateList" class="candidate-list"></div>
           </div>
@@ -299,9 +299,9 @@
         <div class="modal-actions">
           <button class="compact-button" id="runOcrBtn">
             <svg><use href="#icon-search"></use></svg>
-            识别
+            Recognize
           </button>
-          <button class="primary-button" id="applyImportBtn">导入到当前画板</button>
+          <button class="primary-button" id="applyImportBtn">Import to current board</button>
         </div>
       </section>
     </div>
@@ -312,12 +312,12 @@
         <div class="modal-head">
           <div>
             <p class="eyebrow">Screenshot</p>
-            <h2 id="imagePreviewTitle">截图预览</h2>
+            <h2 id="imagePreviewTitle">Screenshot preview</h2>
           </div>
-          <button class="small-icon" data-close-image-preview title="关闭" aria-label="关闭">×</button>
+          <button class="small-icon" data-close-image-preview title="Close" aria-label="Close">×</button>
         </div>
         <figure class="image-preview-body">
-          <img id="imagePreviewImg" alt="截图预览" />
+          <img id="imagePreviewImg" alt="Screenshot preview" />
           <figcaption id="imagePreviewCaption"></figcaption>
         </figure>
       </section>
